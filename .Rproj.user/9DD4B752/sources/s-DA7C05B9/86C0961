@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590593680668.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "86C0961",
+    "lastKnownWriteTime" : 1590593855,
+    "last_content_update" : 1590593855761,
+    "path" : "E:/Facul/Documentos/Portal STP/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "cursorPosition" : "602,6",
+        "scrollLine" : "577"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
