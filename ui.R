@@ -78,7 +78,7 @@ ui <- dashboardPage(
 
       pickerInput(
         inputId = "country",
-        label = strong("Províncias"), 
+        label = strong("Ilhas"), 
         choices = c("São Tomé e Principe",levels(aux$countryName)),
         selected = "São Tomé e Principe",
         #  width = "100%",
@@ -112,12 +112,7 @@ ui <- dashboardPage(
                  icon = icon("fas fa-sync-alt"),
                  width = "60%"
                )),
-      
-      tags$br(),
-      tags$br(),
-      tags$br(),
-      tags$br(),
-      tags$br(),
+
       tags$br(),
       tags$br(),
       fluidRow(
@@ -127,6 +122,17 @@ ui <- dashboardPage(
           textOutput("txt")
                   )
        
+        
+      ),
+      tags$br(),
+      fluidRow(
+        
+        column(offset=1, width = 5,
+               tags$img(src = "sdgts.png", width="90"))
+       , 
+       column(offset=1,width = 5,
+              tags$img(src = "oslo.png", width="68")
+       )
         
       )
       
