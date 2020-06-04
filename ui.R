@@ -114,10 +114,9 @@ ui <- dashboardPage(
                )),
 
       tags$br(),
-      tags$br(),
       fluidRow(
-        column(width=1),
-        column(
+        #column(width=1),
+        column(offset=1,
           width=8,
           textOutput("txt")
                   )
@@ -125,6 +124,8 @@ ui <- dashboardPage(
         
       ),
       tags$br(),
+      tags$br(),
+      tags$h5("Parceiros:", style="margin-left:15px;"),
       fluidRow(
         
         column(offset=1, width = 5,
