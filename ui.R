@@ -123,6 +123,21 @@ ui <- dashboardPage(
        
         
       ),
+      
+      tags$br(),
+      tags$br(),
+      fluidRow(
+        column(offset=1,
+               width = 10,
+      tags$h5("Fonte de dados:"))),
+      fluidRow(
+        column(offset=1,
+               width = 10,
+               tags$a(href="https://sisd.org.mz/covidstp",
+                      HTML("- <u>Sistema de Informação Nacional <br/> de Vigilância Epidemiológica </u>")))
+      )
+      ,
+      tags$br(),
       tags$br(),
       tags$br(),
       tags$h5("Parceiros:", style="margin-left:15px;"),
