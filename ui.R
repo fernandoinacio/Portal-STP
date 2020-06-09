@@ -91,14 +91,14 @@ ui <- dashboardPage(
         "Selecione o intervalo de tempo",
         start = "2019-01-01",
         end = Sys.Date(),
-        separator = "ate",
+        separator = "até",
         language = "pt"
       ),
       
       radioGroupButtons(
         inputId = "prd",
         label = "Periodo",
-        choices = c("Diario", "Semanal", "Mensal"),
+        choices = c("Diário"="Diario", "Semanal", "Mensal"),
         status = "primary",
         selected = "Diario",
         direction = "horizontal",
@@ -134,7 +134,7 @@ ui <- dashboardPage(
         column(offset=1,
                width = 10,
                tags$a(href="https://sisd.org.mz/covidstp",
-                      HTML("- <u>Sistema de Informação Nacional <br/> de Vigilância Epidemiológica </u>")))
+                      HTML("<u>Sistema de Informação Nacional <br/> de Vigilância Epidemiológica </u>")))
       )
       ,
       tags$br(),

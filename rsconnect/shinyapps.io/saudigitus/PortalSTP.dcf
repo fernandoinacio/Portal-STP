@@ -5,8 +5,8 @@ account: saudigitus
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2406441
-bundleId: 3226856
+bundleId: 3248652
 url: https://saudigitus.shinyapps.io/PortalSTP/
-when: 1591251745.9185
+when: 1591731150.84834
 asMultiple: FALSE
 asStatic: FALSE

@@ -86,8 +86,8 @@ server <- function(input,output){
       title = tags$p("SUSPEITOS", style="font-size:90%;"),
       value = tags$p(scales::comma(sum(corona_2()$suspeitos)),style="font-size:150%;"),
       subtitle = tags$p(paste(scales::comma(corona_2()$suspeitos[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                           " casos nas ultimas 24h",ifelse(input$prd=="Semanal","casos na ultima semana",
-                                                                                                                           "casos no ultimo mês"))), style="position:relative; bottom:5px;") ,      icon = icon("user-md"),
+                                                                                           " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                           "casos no último mês"))), style="position:relative; bottom:5px;") ,      icon = icon("user-md"),
       color = "aqua"
     )
   )
@@ -97,8 +97,8 @@ server <- function(input,output){
       title = tags$p("TESTADOS", style="font-size:90%;"),
       value = tags$p(scales::comma(sum(corona_2()$testados)),style="font-size:150%;"),
       subtitle = tags$p(paste(scales::comma(corona_2()$testados[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                          " casos nas ultimas 24h",ifelse(input$prd=="Semanal","casos na ultima semana",
-                                                                                                                          "casos no ultimo mês"))), style="position:relative; bottom:5px;"),
+                                                                                          " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                          "casos no último mês"))), style="position:relative; bottom:5px;"),
       icon = icon("microscope"),
       color = "orange"
     )
@@ -109,8 +109,8 @@ server <- function(input,output){
       title = tags$p("CONFIRMADOS", style="font-size:90%;"),
       value = tags$p(scales::comma(sum(corona_2()$confirmed)),style="font-size:150%;"),
       subtitle =  tags$p(paste(scales::comma(corona_2()$confirmed[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                            " casos nas ultimas 24h",ifelse(input$prd=="Semanal","casos na ultima semana",
-                                                                                                                            "casos no ultimo mês"))), style="position:relative; bottom:5px;"),
+                                                                                            " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                            "casos no último mês"))), style="position:relative; bottom:5px;"),
       icon = icon("users"),
       color = "blue"
     )
@@ -121,8 +121,8 @@ server <- function(input,output){
       title = tags$p("ACTIVOS", style="font-size:90%;"),
       value = tags$p(scales::comma(sum(corona_2()$Active)),style="font-size:150%;"),
       subtitle =  tags$p(paste(scales::comma(corona_2()$Active[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                         " casos nas ultimas 24h",ifelse(input$prd=="Semanal","casos na ultima semana",
-                                                                                                                         "casos no ultimo mês"))), style="position:relative; bottom:5px;"),
+                                                                                         " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                         "casos no último mês"))), style="position:relative; bottom:5px;"),
       
 
       icon = icon("hospital"),
@@ -135,8 +135,8 @@ server <- function(input,output){
       title = tags$p("RECUPERADOS", style="font-size:90%;"),
       value = tags$p(scales::comma(sum(corona_2()$recovered)),style="font-size:150%;"),
       subtitle =  tags$p(paste(scales::comma(corona_2()$recovered[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                            " casos nas ultimas 24h",ifelse(input$prd=="Semanal","casos na ultima semana",
-                                                                                                                            "casos no ultimo mês"))), style="position:relative; bottom:5px;"),
+                                                                                            " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                            "casos no último mês"))), style="position:relative; bottom:5px;"),
       icon = icon("smile"),
       color = "green"
     )
@@ -144,11 +144,11 @@ server <- function(input,output){
   output$obt = renderInfoBox(
     
     infoBox(
-      title = tags$p("OBITOS", style="font-size:90%;"),
+      title = tags$p("ÓBITOS", style="font-size:90%;"),
       value = tags$p(scales::comma(sum(corona_2()$death)),style="font-size:150%;"),
       subtitle =  tags$p(paste(scales::comma(corona_2()$death[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                        " casos nas ultimas 24h",ifelse(input$prd=="Semanal","casos na ultima semana",
-                                                                                                                        "casos no ultimo mês"))), style="position:relative; bottom:5px;"),
+                                                                                        " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                        "casos no último mês"))), style="position:relative; bottom:5px;"),
       icon = icon("heartbeat"),
       color = "red"
     )
@@ -156,7 +156,7 @@ server <- function(input,output){
   
 
   output$txt <- renderText(
-   paste("Ultima atualizacao:",format(max(aux$date),format="%d/%m/%Y"))
+   paste("última atualização:",format(max(aux$date),format="%d/%m/%Y"))
   )
   
   output$timeseries <- renderHighchart({
@@ -164,8 +164,8 @@ server <- function(input,output){
       
    #  hc_chart(type = "areaspline") %>%
       
-      hc_title(text = ifelse(input$country=="São Tomé e Principe","Evolução do virus no tempo",
-                             paste("Evolução do virus no tempo -",input$country,sep = " "))
+      hc_title(text = ifelse(input$country=="São Tomé e Principe","Evolução do vírus no tempo",
+                             paste("Evolução do vírus no tempo -",input$country,sep = " "))
                ,   style = list(color = "#2b908f", useHTML = TRUE))%>%
 
       hc_xAxis(
@@ -207,7 +207,7 @@ server <- function(input,output){
       
   
       hc_add_series(
-        name = "Obitos",
+        name = "Óbitos",
         data = cumsum(corona_2()$death),
         dataLabels = list(enabled = FALSE)
       ) %>%
@@ -363,7 +363,7 @@ server <- function(input,output){
                     name = "Recuperados"
                     , dataLabels = list(enabled = T))%>%
       hc_add_series(data = base()$Mortes ,
-                    name = "Obitos  "
+                    name = "Óbitos  "
                     , dataLabels = list(enabled = T)) %>%
       
       hc_colors(c("#4B0082","#FF7F50","#2E8B57","#FF0000")) %>%
@@ -427,7 +427,7 @@ server <- function(input,output){
                     name = "Taxa de Recuperados(%)"
                     , dataLabels = list(enabled = F)) %>%
       hc_add_series(data = round((cumsum(corona_2()$death)/cumsum(corona_2()$confirmed))*100,2),
-                    name = "Taxa de Obitos(%)"
+                    name = "Taxa de Óbitos(%)"
                     , dataLabels = list(enabled = F))%>%
       
        hc_colors(c("#FF7F50","#2E8B57","#A52A2A")) %>%
@@ -514,13 +514,13 @@ server <- function(input,output){
       hc_plotOptions(series = list(showInLegend = TRUE)) %>%
       
       hc_add_series(data =round(corona_2()$confirmed,2) ,
-                    name = "Casos confirmados"
+                    name = "Casos Confirmados"
                     ,  dataLabels = list(enabled = F)) %>%
       hc_add_series(data =round(corona_2()$recovered,2),
-                    name = "Casos recuperados"
+                    name = "Casos Recuperados"
                     , dataLabels = list(enabled = F)) %>%
       hc_add_series(data = round(corona_2()$death,2),
-                    name = "Casos Mortes"
+                    name = "Casos de Óbitos"
                     , dataLabels = list(enabled = F))%>%
       
       hc_colors(c("#4B0082","#2E8B57","#FF0000")) %>%
@@ -616,7 +616,7 @@ server <- function(input,output){
                     name = "Novos recuperados"
                     , dataLabels = list(enabled = F)) %>%
       hc_add_series(data = corona_2()$NewDeaths,
-                    name = "Novas Mortes"
+                    name = "Novos Óbitos"
                     , dataLabels = list(enabled = F))%>%
       
       hc_colors(c("#4B0082","#2E8B57","#FF0000")) %>%
