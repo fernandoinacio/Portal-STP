@@ -17,6 +17,8 @@ if (!require(shinydashboard)) {install.packages("shinydashboard"); library(shiny
 if (!require(shinydashboardPlus)) {install.packages("shinydashboardPlus"); library(shinydashboardPlus)}
 if (!require(plotly)) {install.packages("plotly"); library(plotly)}
 if (!require(RPostgreSQL)) {install.packages("RPostgreSQL"); library(RPostgreSQL)}
+if (!require(rgdal)) {install.packages("rgdal"); library(rgdal)}
+if (!require(leaflet)) {install.packages("leaflet"); library(leaflet)}
 
 
 

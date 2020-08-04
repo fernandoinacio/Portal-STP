@@ -175,6 +175,13 @@ ui <- dashboardPage(
       infoBoxOutput("obt")
 
     ),
+    fluidRow(
+      box(
+        width = 12,
+        status = "primary",
+        leafletOutput("mapa")
+      )
+    ),
     
     
     fluidRow(

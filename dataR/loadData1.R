@@ -1,5 +1,5 @@
 
-#source("dbConnect/Script_PostgreSql.R")
+source("dbConnect/Script_PostgreSql.R")
 
 aux <- data
 aux <- aux[-1]

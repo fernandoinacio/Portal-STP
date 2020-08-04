@@ -1,4 +1,7 @@
 
+
+
+
 server <- function(input,output){
   
   NewCases_tbl$NewActive <- NewCases_tbl$NewConfirmed-NewCases_tbl$NewRecovered-NewCases_tbl$NewDeaths
@@ -158,6 +161,51 @@ server <- function(input,output){
   output$txt <- renderText(
    paste("última atualização:",format(max(aux$date),format="%d/%m/%Y"))
   )
+  
+  
+  
+  
+  stp_shp <- readOGR(paste(getwd(),"map/STP_admbndp1_1m_gadm.shp", sep = "/"))
+  
+  
+  data$province <- as.factor(data$province)
+  dados <- data %>%
+    group_by(province)%>%
+    summarise(positive=sum(positive))%>%
+    mutate(code=c(1,2))
+  
+  
+  output$mapa <- renderLeaflet({
+    
+    stp_shp@data <- dados[match(stp_shp@data$ADM1_CODE,dados$code),]
+    pal <- colorBin("Reds",stp_shp$positive, bins = c(0,100,200,500,1000,2000))
+    
+    leaflet(stp_shp,options = leafletOptions(minZoom = 7))%>%
+      addTiles()%>%
+      # addProviderTiles(providers$Stamen.TonerLite,
+      #                  options = providerTileOptions(noWrap = T))%>%
+      addPolygons(
+        fillColor = ~pal(stp_shp$positive),
+        color = "black",
+        dashArray = 3,
+        fillOpacity = 0.5,
+        weight = 1,
+        highlightOptions = highlightOptions(color = "black",
+                                            weight = 2,
+                                            bringToFront = T),
+        label = ~htmlEscape(paste("nº de casos:",stp_shp$positive))
+      )%>%
+      addLegend(
+        position = "bottomright",
+        pal=pal,
+        values = ~stp_shp$positive,
+        title = "Casos confirmados"
+        
+      )
+    
+  })
+ 
+  
   
   output$timeseries <- renderHighchart({
     highchart() %>%
