@@ -55,31 +55,24 @@ server <- function(input,output){
        summarise_at(vars(suspeitos:Novas_mortes),sum)
     )
   })
-
-  # 
+  
   # 
   confirmed_tbl <- reactive({
     corona_1()[,c(1,5)]
-    # confirmed_tbl$type <- "confirmed"
-    # colnames(confirmed_tbl)<- c("date","cases")
   })
   # 
   active_tbl <- reactive({
     corona_1()[,c(1,8)]
-  # active_tbl$type <- "active"
-  # colnames(active_tbl)<- c("date","cases")
+
   })
   # 
   recovered_tbl <- reactive({
     corona_1()[,c(1,7)]
-   # recovered_tbl$type <- "recovered"
-   # colnames(recovered_tbl)<- c("date","cases","type")
+
   })
   # 
   death_tbl <- reactive({
     corona_1()[,c(1,6)]
-  #  death_tbl$type <- "death"
-  # colnames(death_tbl)<- c("date","cases","type")
   })
  
   
@@ -162,25 +155,97 @@ server <- function(input,output){
    paste("última atualização:",format(max(aux$date),format="%d/%m/%Y"))
   )
   
+  output$mapa1 <- renderLeaflet({
+
+    pal_sus <- colorNumeric(glasbey()[c(3,2)], domain = c(0,max(dados$suspeitos)))
+    # 
+    # pal_pos <- colorBin(palette=c("red","orange","green","blue"), dados$confirmed, bins=c(0,25,50,100,1000))
+    # 
+    # pal_mor <- colorBin(palette=c("red","orange","green","blue"), dados$death, bins=c(0,25,50,100,1000))
+    # 
+    # pal_rec <- colorBin(palette=c("red","orange","green","blue"), dados$recovered, bins=c(0,25,50,100,1000))
+    # 
+    # pal_act <- colorBin(palette=c("red","orange","green","blue"), dados$active, bins=c(0,25,50,100,1000))
+    
+    leaflet(stp_shp,options = leafletOptions(minZoom =8))%>%
+      addTiles()%>%
+      
+      addPolygons(
+        fillColor = ~pal_sus(dados$suspeitos),
+        color = "black",
+        dashArray = 3,
+        fillOpacity = 0.5,
+        weight = 1,
+        highlightOptions = highlightOptions(color = "black",
+                                            weight = 2,
+                                            bringToFront = T),
+        label = ~htmlEscape(paste("nº de casos:",dados$suspeitos)),
+        group = "Suspeitos"
+      )%>%
+      
+      addPolygons(
+        fillColor = ~pal_sus(dados$confirmed),
+        color = "black",
+        dashArray = 3,
+        fillOpacity = 0.5,
+        weight = 1,
+        highlightOptions = highlightOptions(color = "black",
+                                            weight = 2,
+                                            bringToFront = T),
+        label = ~htmlEscape(paste("nº de casos:",dados$confirmed)),
+        group = "Confirmados"
+      )%>%
+      
+      addPolygons(
+        fillColor = ~pal_sus(dados$death),
+        color = "black",
+        dashArray = 3,
+        fillOpacity = 0.5,
+        weight = 1,
+        highlightOptions = highlightOptions(color = "black",
+                                            weight = 2,
+                                            bringToFront = T),
+        label = ~htmlEscape(paste("nº de casos:",dados$death)),
+        group = "Óbitos"
+      )%>%
+      addPolygons(
+        fillColor = ~pal_sus(dados$recovered),
+        color = "black",
+        dashArray = 3,
+        fillOpacity = 0.5,
+        weight = 1,
+        highlightOptions = highlightOptions(color = "black",
+                                            weight = 2,
+                                            bringToFront = T),
+        label = ~htmlEscape(paste("nº de casos:",dados$recovered)),
+        group = "Recuperados"
+      )%>%
+      addPolygons(
+        fillColor = ~pal_sus(dados$active),
+        color = "black",
+        dashArray = 3,
+        fillOpacity = 0.5,
+        weight = 1,
+        highlightOptions = highlightOptions(color = "black",
+                                            weight = 2,
+                                            bringToFront = T),
+        label = ~htmlEscape(paste("nº de casos:",dados$active)),
+        group = "Ativos"
+      )%>%
+      
+        addLayersControl(
+        baseGroups = c("Suspeitos", "Confirmados","Ativos","Óbitos","Recuperados"),
+        options = layersControlOptions(collapsed = T)
+      )
+  })
   
-  
-  
-  stp_shp <- readOGR(paste(getwd(),"map/STP_admbndp1_1m_gadm.shp", sep = "/"))
-  
-  
-  data$province <- as.factor(data$province)
-  dados <- data %>%
-    group_by(province)%>%
-    summarise(positive=sum(positive))%>%
-    mutate(code=c(1,2))
-  
-  
+
   output$mapa <- renderLeaflet({
     
     stp_shp@data <- dados[match(stp_shp@data$ADM1_CODE,dados$code),]
     pal <- colorBin("Reds",stp_shp$positive, bins = c(0,100,200,500,1000,2000))
     
-    leaflet(stp_shp,options = leafletOptions(minZoom = 7))%>%
+    leaflet(stp_shp,options = leafletOptions(minZoom =8))%>%
       addTiles()%>%
       # addProviderTiles(providers$Stamen.TonerLite,
       #                  options = providerTileOptions(noWrap = T))%>%
@@ -204,6 +269,24 @@ server <- function(input,output){
       )
     
   })
+  
+  observe({
+
+     if(input$country==levels(aux$countryName)[1])(
+      leafletProxy("mapa1") %>%
+    setView(lng =  7.4400, lat = 1.6130, zoom = 12)
+    )
+    else if(input$country==levels(aux$countryName)[2])(
+      leafletProxy("mapa1") %>%
+        setView(lng =  6.7308, lat = 0.1970, zoom = 10)
+      )    
+    else(
+      leafletProxy("mapa1") %>%
+        setView(lng =  7.6000, lat = 0.6352, zoom = 8)
+    )  
+  })
+  
+  
  
   
   

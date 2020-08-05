@@ -8,6 +8,7 @@ if (!require(data.table)) {install.packages("data.table")}
 if (!require(DT)) {install.packages("DT"); library(DT)}
 if (!require(tidyverse)) {install.packages("tidyverse"); library(tidyverse)}
 if (!require(readxl)) {install.packages("readxl"); library(readxl)}
+if (!require(pals)) {install.packages("pals"); library(pals)}
 if (!require(htmlwidgets)) {install.packages("htmlwidgets"); library(htmlwidgets)}
 if (!require(htmltools)) {install.packages("htmltools"); library(htmltools)}
 if (!require(shinyWidgets)) {install.packages("shinyWidgets"); library(shinyWidgets)}

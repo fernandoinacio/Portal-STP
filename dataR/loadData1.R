@@ -65,3 +65,11 @@ NewCases_tbl$Novos_recuperados <- round(NewCases_tbl$NewRecovered,2)
 NewCases_tbl$Novas_mortes <- round(NewCases_tbl$NewDeaths,2)
 
 
+stp_shp <- readOGR(paste(getwd(),"map/STP_admbndp1_1m_gadm.shp", sep = "/"))
+
+dados <- NewCases_tbl %>%
+  group_by(countryName)%>%
+  summarise(suspeitos=sum(suspeitos),confirmed=sum(confirmed),death=sum(death),recovered=sum(recovered),active=sum(active))%>%
+  mutate(code=c(1,2))
+
+

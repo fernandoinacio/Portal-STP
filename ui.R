@@ -62,6 +62,7 @@ tags$style(type="text/css", "
         padding-top: 175px;
     }"
 )
+
 source("packageLoad.R")
 source("dataR/loadData1.R")
 
@@ -179,7 +180,7 @@ ui <- dashboardPage(
       box(
         width = 12,
         status = "primary",
-        leafletOutput("mapa")
+        leafletOutput("mapa1")
       )
     ),
     
