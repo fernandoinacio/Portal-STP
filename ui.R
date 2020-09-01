@@ -82,7 +82,6 @@ ui <- dashboardPage(
         label = strong("Ilhas"), 
         choices = c("São Tomé e Principe",levels(aux$countryName)),
         selected = "São Tomé e Principe",
-        #  width = "100%",
         options = list(`live-search`=T,
                        title = "Selecione a Provincia")
       ),
@@ -116,7 +115,6 @@ ui <- dashboardPage(
 
       tags$br(),
       fluidRow(
-        #column(width=1),
         column(offset=1,
           width=8,
           textOutput("txt")
@@ -158,22 +156,24 @@ ui <- dashboardPage(
   ),
   
   dashboardBody(
+    tags$head(includeHTML(("GA.html"))),
 
     setShadow(class = "dropdown-menu"),
     
     fluidRow(
 
-       infoBoxOutput("sus"),
+       #infoBoxOutput("sus"),
        infoBoxOutput("tes"),
-       infoBoxOutput("conf")
+       infoBoxOutput("conf"),
+       infoBoxOutput("obt")
        
 
     ),
     fluidRow(
 
       infoBoxOutput("act"),
-      infoBoxOutput("rec"),
-      infoBoxOutput("obt")
+      infoBoxOutput("rec")
+      
 
     ),
     fluidRow(

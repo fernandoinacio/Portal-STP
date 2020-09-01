@@ -1,7 +1,5 @@
 
 
-
-
 server <- function(input,output){
   
   NewCases_tbl$NewActive <- NewCases_tbl$NewConfirmed-NewCases_tbl$NewRecovered-NewCases_tbl$NewDeaths
@@ -21,7 +19,6 @@ server <- function(input,output){
     dplyr::group_by(countryName) %>%
     slice(n()) %>%
     ungroup() %>%
-    #select(-countryCode) %>%
     arrange(desc(confirmed)) %>%
     mutate(totalActivePer = Active/confirmed) %>%
     mutate(totalRecoveredPer = recovered/confirmed) %>%
@@ -75,18 +72,18 @@ server <- function(input,output){
     corona_1()[,c(1,6)]
   })
  
-  
-  output$sus = renderInfoBox(
-    
-    infoBox(
-      title = tags$p("SUSPEITOS", style="font-size:85%;"),
-      value = tags$p(sum(corona_2()$suspeitos),style="font-size:150%;"),
-      subtitle = tags$p(paste(corona_2()$suspeitos[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                           " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                           "casos no último mês")), style="position:absolute; bottom:5px;") ,      icon = icon("user-md"),
-      color = "aqua"
-    )
-  )
+  # 
+  # output$sus = renderInfoBox(
+  #   
+  #   infoBox(
+  #     title = tags$p("SUSPEITOS", style="font-size:85%;"),
+  #     value = tags$p(sum(corona_2()$suspeitos),style="font-size:150%;"),
+  #     subtitle = tags$p(paste(corona_2()$suspeitos[nrow(corona_2())]),ifelse(input$prd=="Diario",
+  #                                                                                          " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+  #                                                                                                                          "casos no último mês")), style="position:absolute; bottom:5px;") ,      icon = icon("user-md"),
+  #     color = "aqua"
+  #   )
+  # )
   output$tes = renderInfoBox(
     
     infoBox(
@@ -171,19 +168,6 @@ server <- function(input,output){
       addTiles()%>%
       
       addPolygons(
-        fillColor = ~pal_sus(dados$suspeitos),
-        color = "black",
-        dashArray = 3,
-        fillOpacity = 0.5,
-        weight = 1,
-        highlightOptions = highlightOptions(color = "black",
-                                            weight = 2,
-                                            bringToFront = T),
-        label = ~htmlEscape(paste("nº de casos:",dados$suspeitos)),
-        group = "Suspeitos"
-      )%>%
-      
-      addPolygons(
         fillColor = ~pal_sus(dados$confirmed),
         color = "black",
         dashArray = 3,
@@ -234,7 +218,7 @@ server <- function(input,output){
       )%>%
       
         addLayersControl(
-        baseGroups = c("Suspeitos", "Confirmados","Ativos","Óbitos","Recuperados"),
+        baseGroups = c("Confirmados","Ativos","Óbitos","Recuperados"),
         options = layersControlOptions(collapsed = T)
       )
   })
@@ -302,15 +286,6 @@ server <- function(input,output){
       hc_xAxis(
         categories = format(corona_2()$date, format="%d-%m"))       %>%
      
-      
-      
-      hc_add_series(
-        name = "Suspeitos",
-        data = cumsum(corona_2()$suspeitos),
-        dataLabels = list(enabled = F)
-      ) %>%
-      
-      
       hc_add_series(
         name = "Testados",
         data = cumsum(corona_2()$testados),
@@ -368,11 +343,7 @@ server <- function(input,output){
             menuItems = list('downloadPNG', 'downloadPDF','downloadCSV', 'downloadXLS')
           ))
       )
-    
   })
-  
-
-  
   
   a <- reactive({
         corona_2()%>%
