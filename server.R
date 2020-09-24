@@ -90,8 +90,8 @@ server <- function(input,output){
       title = tags$p("TESTADOS", style="font-size:85%;"),
       value = tags$p(sum(corona_2()$testados),style="font-size:150%;"),
       subtitle = tags$p(paste(corona_2()$testados[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                          " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                          "casos no último mês")), style="position:absolute; bottom:5px;"),
+                                                                                          " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                          "casos no último mês")), style="position:absolute; bottom:1px;"),
       icon = icon("microscope"),
       color = "orange"
     )
@@ -102,8 +102,8 @@ server <- function(input,output){
       title = tags$p("CONFIRMADOS", style="font-size:85%;"),
       value = tags$p(sum(corona_2()$confirmed),style="font-size:150%;"),
       subtitle =  tags$p(paste(corona_2()$confirmed[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                            " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                            "casos no último mês")), style="position:absolute; bottom:5px;"),
+                                                                                            " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                            "casos no último mês")), style="position:absolute; bottom:1px;"),
       icon = icon("users"),
       color = "blue"
     )
@@ -114,8 +114,8 @@ server <- function(input,output){
       title = tags$p("ACTIVOS", style="font-size:85%;"),
       value = tags$p(sum(corona_2()$Active),style="font-size:150%;"),
       subtitle =  tags$p(paste(corona_2()$Active[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                         " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                         "casos no último mês")), style="position:absolute; bottom:5px;"),
+                                                                                         " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                         "casos no último mês")), style="position:absolute; bottom:1px;"),
       
 
       icon = icon("hospital"),
@@ -128,8 +128,8 @@ server <- function(input,output){
       title = tags$p("RECUPERADOS", style="font-size:85%;"),
       value = tags$p(sum(corona_2()$recovered),style="font-size:140%;"),
       subtitle =  tags$p(paste(corona_2()$recovered[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                            " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                            "casos no último mês")), style="position:absolute; bottom:5px;"),
+                                                                                            " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                            "casos no último mês")), style="position:absolute; bottom:1px;"),
       icon = icon("smile"),
       color = "green"
     )
@@ -140,8 +140,8 @@ server <- function(input,output){
       title = tags$p("ÓBITOS", style="font-size:85%;"),
       value = tags$p(sum(corona_2()$death),style="font-size:150%;"),
       subtitle =  tags$p(paste(corona_2()$death[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                        " casos nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                        "casos no último mês")), style="position:absolute; bottom:5px;"),
+                                                                                        " nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
+                                                                                                                        "casos no último mês")), style="position:absolute; bottom:1px;"),
       icon = icon("heartbeat"),
       color = "red"
     )
@@ -279,7 +279,7 @@ server <- function(input,output){
       
    #  hc_chart(type = "areaspline") %>%
       
-      hc_title(text = ifelse(input$country=="São Tomé e Principe","Evolução do vírus no tempo",
+      hc_title(text = ifelse(input$country=="São Tomé e Principe","Evolução no tempo",
                              paste("Evolução do vírus no tempo -",input$country,sep = " "))
                ,   style = list(color = "#2b858f", useHTML = TRUE))%>%
 
@@ -603,8 +603,8 @@ server <- function(input,output){
     highchart() %>%
       
       hc_title(
-        text = ifelse(input$country=="São Tomé e Principe","Evolução dos indicadores de casos novos no tempo",
-                      paste("Evolução dos indicadores de casos novos no tempo-",input$country)),
+        text = ifelse(input$country=="São Tomé e Principe","Evolução de casos novos no tempo",
+                      paste("Evolução de casos novos no tempo-",input$country)),
         style = list(color = "#2b858f", useHTML = TRUE)
       ) %>%
       
@@ -616,13 +616,13 @@ server <- function(input,output){
       hc_plotOptions(series = list(showInLegend = TRUE)) %>%
       
       hc_add_series(data =round(corona_2()$confirmed,2) ,
-                    name = "Casos Confirmados"
+                    name = "Confirmados"
                     ,  dataLabels = list(enabled = F)) %>%
       hc_add_series(data =round(corona_2()$recovered,2),
-                    name = "Casos Recuperados"
+                    name = "Recuperados"
                     , dataLabels = list(enabled = F)) %>%
       hc_add_series(data = round(corona_2()$death,2),
-                    name = "Casos de Óbitos"
+                    name = "Óbitos"
                     , dataLabels = list(enabled = F))%>%
       
       hc_colors(c("#4B0082","#2E8B57","#FF0000")) %>%

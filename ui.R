@@ -165,13 +165,14 @@ ui <- dashboardPage(
        #infoBoxOutput("sus"),
        infoBoxOutput("tes"),
        infoBoxOutput("conf"),
-       infoBoxOutput("obt")
+       infoBoxOutput("act")
        
 
     ),
     fluidRow(
 
-      infoBoxOutput("act"),
+      
+      infoBoxOutput("obt"),
       infoBoxOutput("rec")
       
 
