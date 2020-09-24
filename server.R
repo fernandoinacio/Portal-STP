@@ -280,7 +280,7 @@ server <- function(input,output){
    #  hc_chart(type = "areaspline") %>%
       
       hc_title(text = ifelse(input$country=="São Tomé e Principe","Evolução no tempo",
-                             paste("Evolução do vírus no tempo -",input$country,sep = " "))
+                             paste("Evolução no tempo -",input$country,sep = " "))
                ,   style = list(color = "#2b858f", useHTML = TRUE))%>%
 
       hc_xAxis(
