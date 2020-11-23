@@ -125,6 +125,7 @@ server <- function(input,output){
   output$obt = renderInfoBox(
     
     infoBox(
+      
       title = tags$p("ÓBITOS", style="font-size:85%;"),
       value = tags$p(sum(corona_2()$death),style="font-size:150%;"),
       subtitle =  tags$p(paste(corona_2()$death[nrow(corona_2())]),ifelse(input$prd=="Diario",

@@ -162,14 +162,12 @@ ui <- dashboardPage(
     
     fluidRow(
 
-       infoBoxOutput("conf"),
-       infoBoxOutput("act"),
-       infoBoxOutput("obt")
+       infoBoxOutput("conf", width = 3),
+       infoBoxOutput("act", width = 3),
+       infoBoxOutput("obt", width = 3),
+       infoBoxOutput("rec", width = 3)
        
 
-    ),
-    fluidRow(
-      infoBoxOutput("rec")
     ),
     fluidRow(
       box(
