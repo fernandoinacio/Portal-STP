@@ -91,7 +91,7 @@ server <- function(input,output){
       value = tags$p(sum(corona_2()$confirmed),style="font-size:150%;"),
       subtitle =  tags$p(paste(corona_2()$confirmed[nrow(corona_2())]),ifelse(input$prd=="Diario",
                                                                                             " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                            "casos no último mês")), style="position:absolute; bottom:1px;"),
+                                                                                                                            "casos no último mês")), style="position:absolute; bottom:6px;"),
       icon = icon("users"),
       color = "blue"
     )
@@ -103,7 +103,7 @@ server <- function(input,output){
       value = tags$p(sum(corona_2()$Active),style="font-size:150%;"),
       subtitle =  tags$p(paste(corona_2()$Active[nrow(corona_2())]),ifelse(input$prd=="Diario",
                                                                                          " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                         "casos no último mês")), style="position:absolute; bottom:1px;"),
+                                                                                                                         "casos no último mês")), style="position:absolute; bottom:6px;"),
       
 
       icon = icon("hospital"),
@@ -117,7 +117,7 @@ server <- function(input,output){
       value = tags$p(sum(corona_2()$recovered),style="font-size:140%;"),
       subtitle =  tags$p(paste(corona_2()$recovered[nrow(corona_2())]),ifelse(input$prd=="Diario",
                                                                                             " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                            "casos no último mês")), style="position:absolute; bottom:1px;"),
+                                                                                                                            "casos no último mês")), style="position:absolute; bottom:6px;"),
       icon = icon("smile"),
       color = "green"
     )
@@ -130,7 +130,7 @@ server <- function(input,output){
       value = tags$p(sum(corona_2()$death),style="font-size:150%;"),
       subtitle =  tags$p(paste(corona_2()$death[nrow(corona_2())]),ifelse(input$prd=="Diario",
                                                                                         " nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                        "casos no último mês")), style="position:absolute; bottom:1px;"),
+                                                                                                                        "casos no último mês")), style="position:absolute; bottom:6px;"),
       icon = icon("heartbeat"),
       color = "red"
     )
