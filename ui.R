@@ -162,20 +162,14 @@ ui <- dashboardPage(
     
     fluidRow(
 
-       #infoBoxOutput("sus"),
-       infoBoxOutput("tes"),
        infoBoxOutput("conf"),
-       infoBoxOutput("act")
+       infoBoxOutput("act"),
+       infoBoxOutput("obt")
        
 
     ),
     fluidRow(
-
-      
-      infoBoxOutput("obt"),
       infoBoxOutput("rec")
-      
-
     ),
     fluidRow(
       box(

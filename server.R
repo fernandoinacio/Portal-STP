@@ -84,18 +84,6 @@ server <- function(input,output){
   #     color = "aqua"
   #   )
   # )
-  output$tes = renderInfoBox(
-    
-    infoBox(
-      title = tags$p("TESTADOS", style="font-size:85%;"),
-      value = tags$p(sum(corona_2()$testados),style="font-size:150%;"),
-      subtitle = tags$p(paste(corona_2()$testados[nrow(corona_2())]),ifelse(input$prd=="Diario",
-                                                                                          " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
-                                                                                                                          "casos no último mês")), style="position:absolute; bottom:1px;"),
-      icon = icon("microscope"),
-      color = "orange"
-    )
-  )
   output$conf = renderInfoBox(
     
     infoBox(
@@ -285,12 +273,6 @@ server <- function(input,output){
 
       hc_xAxis(
         categories = format(corona_2()$date, format="%d-%m"))       %>%
-     
-      hc_add_series(
-        name = "Testados",
-        data = cumsum(corona_2()$testados),
-        dataLabels = list(enabled = F)
-      ) %>%
       
         hc_add_series(
         name = "Confirmados",
@@ -347,7 +329,7 @@ server <- function(input,output){
   
   a <- reactive({
         corona_2()%>%
-      select(Data=date,Suspeitos=suspeitos,Testados=testados,Confirmados=confirmed,Recuperados=recovered,Mortes=death,Activos=active)
+      select(Data=date,Suspeitos=suspeitos,Confirmados=confirmed,Recuperados=recovered,Mortes=death,Activos=active)
     
   })
   output$tabela_timeseries <- renderDataTable({
