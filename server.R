@@ -93,7 +93,7 @@ server <- function(input,output){
                                                                                             " últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
                                                                                                                             "casos no último mês")), style="position:absolute; bottom:6px;"),
       icon = icon("users"),
-      color = "blue"
+      color = "red"
     )
   )
   output$act = renderInfoBox(
@@ -107,7 +107,7 @@ server <- function(input,output){
       
 
       icon = icon("hospital"),
-      color = "purple"
+      color = "orange"
     )
   )
   output$rec = renderInfoBox(
@@ -132,7 +132,7 @@ server <- function(input,output){
                                                                                         " nas últimas 24h",ifelse(input$prd=="Semanal","casos na última semana",
                                                                                                                         "casos no último mês")), style="position:absolute; bottom:6px;"),
       icon = icon("heartbeat"),
-      color = "red"
+      color = "black"
     )
   )
   
