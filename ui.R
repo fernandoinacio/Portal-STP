@@ -147,6 +147,9 @@ ui <- dashboardPage(
        , 
        column(offset=1,width = 5,
               tags$img(src = "oslo.png", width="68")
+       ),
+       column(offset=1,width = 5,
+              tags$img(src = "PNUD.png", width="60", style="margin-left:15px; margin-top:10px;")
        )
         
       )
